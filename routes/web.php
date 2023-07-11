@@ -1,13 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => view('welcome'));
 
-Route::get('/sign-in', fn() => view('authentication.template-login'))->name('login');
-
-Route::post('/sign-in', fn(Request $request) => $request->all())->name('login.authenticate');
+Route::get('/sign-in', [LoginController::class, 'loginForm'])->name('login');
+Route::post('/sign-in', [LoginController::class, 'loginAuthenticate'])->name('login.authenticate');
 
 // Route::get('/dashboard', fn() => 'Ini halaman dashboard')->middleware(['auth']);
 // Route::get('/aduan', fn() => 'Ini halaman aduan')->middleware(['auth']);
