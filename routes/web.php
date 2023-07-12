@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AduanController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,22 +29,16 @@ Route::post('/sign-in', [LoginController::class, 'loginAuthenticate'])->name('lo
 // Cara 2 route group yang spesifik
 //Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', function() {
+    Route::get('/dashboard', [DashboardController::class, 'user'])->name('dashboard.user');
 
-        $pageTitle = '<span class="text-danger">Dashboard Utama</span><script>alert("anda dihack");</script>';
+    Route::get('/aduan', [AduanController::class, 'index'])->name('aduan.index');
+    Route::get('/aduan/new', [AduanController::class, 'create'])->name('aduan.create');
+    Route::post('/aduan/new', [AduanController::class, 'store'])->name('aduan.store');
+    Route::get('/aduan/{id}', [AduanController::class, 'show'])->name('aduan.show');
 
-        // Cara 1 Membekalkan data variable kepada view
-        //return view('template-dashboard')->with('tajuk', $pageTitle);
 
-        // cara 2 Membekalkan data variable kepada view
-        //return view('template-dashboard', ['tajuk' => $pageTitle]);
 
-        // Cara 3
-        return view('template-dashboard', compact('pageTitle'));
 
-    })->name('dashboard');
-
-    Route::get('/aduan', fn() => view('aduan.template-senarai'))->name('aduan');
     Route::get('/profile', fn() => 'Ini halaman profile')->name('profile');
     Route::get('/logout', fn() => redirect('/'))->name('logout');
 
