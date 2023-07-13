@@ -36,6 +36,19 @@
 </div>
 
 <div class="mb-3">
+    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+        <input type="checkbox" class="btn-check" id="btncheck1" name="category[]" value="aplikasi" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btncheck1">Aplikasi</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck2" name="category[]" value="operasi" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btncheck2">Operasi</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck3" name="category[]" value="keselamatan" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btncheck3">Keselamatan</label>
+    </div>
+</div>
+
+<div class="mb-3">
     <label for="lampiran" class="form-label">Lampiran</label>
     <input type="file" name="lampiran">
 </div>

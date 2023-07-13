@@ -10,6 +10,7 @@
 
 <form method="POST" action="{{ route('aduan.update', $aduan->id) }}" enctype="multipart/form-data">
 @csrf
+@method('PATCH')
 
 <div class="card mb-4">
     <div class="card-header">

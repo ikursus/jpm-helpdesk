@@ -80,9 +80,14 @@ class AduanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AduanRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+
+        DB::table('aduan')->where('id', $id)->update($data);
+
+        return redirect()->route('aduan.edit', $id);
+
     }
 
     /**
