@@ -73,8 +73,11 @@ class AduanController extends Controller
     public function edit(string $id)
     {
         $aduan = DB::table('aduan')->where('id', '=', $id)->first();
+        $category = explode(',', $aduan->category);
 
-        return view('aduan.template-borang-edit')->with('aduan', $aduan);
+        return view('aduan.template-borang-edit')
+        ->with('aduan', $aduan)
+        ->with('category', $category);
     }
 
     /**
@@ -83,6 +86,9 @@ class AduanController extends Controller
     public function update(AduanRequest $request, string $id)
     {
         $data = $request->validated();
+
+        // Tukar format data dari array kepada string apabila simpan ke dalam database
+        $data['category'] = implode(',', $data['category']);
 
         DB::table('aduan')->where('id', $id)->update($data);
 
@@ -95,6 +101,8 @@ class AduanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('aduan')->where('id', $id)->delete();
+
+        return redirect()->route('aduan.index')->with('notis-success', 'Rekod berjaya dihapuskan!');
     }
 }

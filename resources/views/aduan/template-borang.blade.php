@@ -37,13 +37,33 @@
 
 <div class="mb-3">
     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-        <input type="checkbox" class="btn-check" id="btncheck1" name="category[]" value="aplikasi" autocomplete="off">
+
+        <input type="checkbox"
+        class="btn-check"
+        id="btncheck1"
+        name="category[]"
+        value="aplikasi"
+        @if (isset($category))
+        {{ in_array('aplikasi', $category) ? 'checked' : NULL }}
+        @endif
+        autocomplete="off">
+
         <label class="btn btn-outline-primary" for="btncheck1">Aplikasi</label>
 
-        <input type="checkbox" class="btn-check" id="btncheck2" name="category[]" value="operasi" autocomplete="off">
+        <input
+        type="checkbox"
+        class="btn-check"
+        id="btncheck2"
+        name="category[]"
+        value="operasi"
+        @if (isset($category))
+        {{ in_array('operasi', $category) ? 'checked' : NULL }}
+        @endif
+        autocomplete="off">
+
         <label class="btn btn-outline-primary" for="btncheck2">Operasi</label>
 
-        <input type="checkbox" class="btn-check" id="btncheck3" name="category[]" value="keselamatan" autocomplete="off">
+        <input type="checkbox" class="btn-check" id="btncheck3" name="category[]" value="keselamatan" @if (isset($category)){{ in_array('keselamatan', $category) ? 'checked' : NULL }}@endif autocomplete="off">
         <label class="btn btn-outline-primary" for="btncheck3">Keselamatan</label>
     </div>
 </div>
