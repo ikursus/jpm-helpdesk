@@ -27,7 +27,7 @@ Route::post('/sign-in', [LoginController::class, 'loginAuthenticate'])->name('lo
 // });
 
 // Cara 2 route group yang spesifik
-//Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'user'])->name('dashboard.user');
 
@@ -35,12 +35,10 @@ Route::post('/sign-in', [LoginController::class, 'loginAuthenticate'])->name('lo
     Route::get('/aduan/new', [AduanController::class, 'create'])->name('aduan.create');
     Route::post('/aduan/new', [AduanController::class, 'store'])->name('aduan.store');
     Route::get('/aduan/{id}', [AduanController::class, 'show'])->name('aduan.show');
-
-
-
+    //Route::resource('aduan', AduanController::class);
 
     Route::get('/profile', fn() => 'Ini halaman profile')->name('profile');
     Route::get('/logout', fn() => redirect('/'))->name('logout');
 
-//});
+});
 

@@ -20,11 +20,14 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
+
+                                        @include('layout.alert')
+
                                         <form method="POST" action="{{ route('login.authenticate') }}">
                                             @csrf
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" name="email" type="email" placeholder="name@example.com" />
-                                                <label for="inputEmail">Email address</label>
+                                                <input class="form-control" name="nokp" type="text" placeholder="No. K/P" />
+                                                <label for="inputEmail">NO KP</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" name="password" type="password" placeholder="Password" />
@@ -35,7 +38,7 @@
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Forgot Password?</a>
+                                                <a class="small" href="#">Forgot Password?</a>
                                                 <button class="btn btn-primary" type="submit">Login</button>
                                             </div>
                                         </form>
