@@ -74,10 +74,11 @@
             <tbody>
                 @forelse ($senaraiAduan as $aduan)
                 <tr>
-                    <td>{{ $aduan->user_id }}</td>
+                    <td>{{ $aduan->user->name }}</td>
                     <td>{{ $aduan->title }}</td>
                     <td>{{ $aduan->description }}</td>
                     <td>
+                        <a class="btn btn-warning" href="{{ route('aduan.pdf', $aduan->id) }}">PDF</a>
                         <a class="btn btn-primary" href="{{ route('aduan.show', $aduan->id) }}">Detail</a>
                         <a class="btn btn-info" href="{{ route('aduan.edit', $aduan->id) }}">Edit</a>
 
@@ -88,8 +89,6 @@
                         </button>
 
                         <!-- Modal -->
-
-
                         <form method="POST" action="{{ route('aduan.destroy', $aduan->id) }}">
                             @csrf
                             @method('DELETE')

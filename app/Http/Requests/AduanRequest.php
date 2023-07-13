@@ -24,7 +24,7 @@ class AduanRequest extends FormRequest
         return [
             'title' => 'required|min:3|string', // Cara 1 menulis validation rules. tanda | mengasingkan rules
             'description' => ['required', 'min:3'], // Cara 2 menulis validation rules. guna kaedah array
-            'category' => ['array'],
+            'category' => ['required', 'array'],
             'category.*' => ['in:aplikasi,operasi,keselamatan'],
             'lampiran' => ['sometimes']
         ];

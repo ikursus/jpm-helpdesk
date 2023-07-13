@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AduanController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AduanController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PrintAduanController;
 
 Route::get('/', fn () => view('welcome'));
 
@@ -38,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/aduan/{id}/edit', [AduanController::class, 'edit'])->name('aduan.edit');
     Route::patch('/aduan/{id}/edit', [AduanController::class, 'update'])->name('aduan.update');
     Route::delete('/aduan/{id}', [AduanController::class, 'destroy'])->name('aduan.destroy');
+    Route::get('/aduan/{id}/pdf', PrintAduanController::class)->name('aduan.pdf');
     //Route::resource('aduan', AduanController::class);
 
     Route::get('/profile', fn() => 'Ini halaman profile')->name('profile');
