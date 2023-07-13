@@ -13,7 +13,15 @@ class AduanController extends Controller
      */
     public function index()
     {
-        return view('aduan.template-senarai');
+        $senaraiAduan = DB::table('aduan')
+        ->where('user_id', '=', auth()->id())
+        //->select('title', 'description')
+        ->get();
+
+        // Dump Data & Die
+        //dd($senaraiAduan);
+
+        return view('aduan.template-senarai', compact('senaraiAduan'));
     }
 
     /**
@@ -21,7 +29,7 @@ class AduanController extends Controller
      */
     public function create()
     {
-        return view('aduan.template-borang');
+        return view('aduan.template-borang-create');
     }
 
     /**
@@ -37,6 +45,7 @@ class AduanController extends Controller
         // return $request->all();
         $data = $request->validated();
         $data['user_id'] = auth()->id();
+        $data['created_at'] = now();
 
         // Query Builder
         DB::table('aduan')->insert($data);
@@ -52,7 +61,10 @@ class AduanController extends Controller
      */
     public function show(string $id)
     {
-        return view('aduan.template-detail');
+        $aduan = DB::table('aduan')->where('id', '=', $id)->first();
+
+        //return view('aduan.template-detail')->with('aduan', $aduan);
+        return view('aduan.template-detail', ['aduan' => $aduan]);
     }
 
     /**
@@ -60,7 +72,9 @@ class AduanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $aduan = DB::table('aduan')->where('id', '=', $id)->first();
+
+        return view('aduan.template-borang-edit')->with('aduan', $aduan);
     }
 
     /**

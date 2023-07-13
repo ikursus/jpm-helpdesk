@@ -35,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/aduan/new', [AduanController::class, 'create'])->name('aduan.create');
     Route::post('/aduan/new', [AduanController::class, 'store'])->name('aduan.store');
     Route::get('/aduan/{id}', [AduanController::class, 'show'])->name('aduan.show');
+    Route::get('/aduan/{id}/edit', [AduanController::class, 'edit'])->name('aduan.edit');
+    Route::patch('/aduan/{id}/edit', [AduanController::class, 'update'])->name('aduan.update');
     //Route::resource('aduan', AduanController::class);
 
     Route::get('/profile', fn() => 'Ini halaman profile')->name('profile');

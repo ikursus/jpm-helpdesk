@@ -57,48 +57,36 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Tajuk</th>
+                    <th>Description</th>
+                    <th>Tindakan</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Tajuk</th>
+                    <th>Description</th>
+                    <th>Tindakan</th>
                 </tr>
             </tfoot>
             <tbody>
+                @forelse ($senaraiAduan as $aduan)
                 <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
+                    <td>{{ $aduan->user_id }}</td>
+                    <td>{{ $aduan->title }}</td>
+                    <td>{{ $aduan->description }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ route('aduan.show', $aduan->id) }}">Detail</a>
+                        <a class="btn btn-info" href="{{ route('aduan.edit', $aduan->id) }}">Edit</a>
+                        <button class="btn btn-danger" type="button">Delete</button>
+                    </td>
                 </tr>
+                @empty
                 <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
+                    <td colspan="4">Tiada Rekod Dijumpai</td>
                 </tr>
-                <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>$86,000</td>
-                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

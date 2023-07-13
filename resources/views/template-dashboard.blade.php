@@ -9,7 +9,7 @@
 </ol>
 
 @auth
-    <h3>Selamat Datang {{ auth()->user->name }}</h3>
+    <h3>Selamat Datang {{ auth()->user()->name }}</h3>
 @endauth
 
 @guest
